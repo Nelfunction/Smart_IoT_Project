@@ -2,6 +2,10 @@
 #define SENSOR_1_OUTPUT 3
 
 
+bool autolight= true;
+
+String sCommand = "";
+
 
 void setup() {
 
@@ -14,13 +18,29 @@ void setup() {
 
 void loop() {
 
-
+  sCommand = "";
+   while(Serial.available())
+   {
+     sCommand=Serial.readString();
+   }
+   
+   if(sCommand != "" )
+   {
+    if(sCommand=="on"){
+      autolight=true;
+      }
+      else if(sCommand=="off"){
+        autolight=false;
+        
+        }
+   
+   }
   int SENSOR_1_VALUE = analogRead(SENSOR_1_PIN);
 
   
 
   
-
+  if(autolight){
   if(SENSOR_1_VALUE>1000) //어둡다=라이트켜야됨
 
   {
@@ -40,8 +60,9 @@ void loop() {
     digitalWrite(SENSOR_1_OUTPUT, LOW);
 
     }
+    
 
 
   delay(1000);
-
+  }
 }

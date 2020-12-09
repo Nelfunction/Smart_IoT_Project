@@ -94,7 +94,13 @@ int main(int argc, char **argv) {
 
 			if(strncmp(buf, "q", 1) == 0) {
 				break;
-			}
+			}else if(strncmp(buf,"on",2)==0){
+			system("sudo python3 test.py on");
+		
+			}else if(strncmp(buf,"off",3)==0){
+			system("sudo python3 test.py off");
+		
+		}
 
 			fflush(stdout);
 		}
